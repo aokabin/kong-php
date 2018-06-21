@@ -8,8 +8,10 @@ use TheRealGambo\Kong\Apis\Consumer;
 use TheRealGambo\Kong\Apis\Node;
 use TheRealGambo\Kong\Apis\Plugin;
 use TheRealGambo\Kong\Apis\Plugins\BasicAuth;
+use TheRealGambo\Kong\Apis\Plugins\Hmac;
 use TheRealGambo\Kong\Apis\Plugins\KeyAuth;
 use TheRealGambo\Kong\Apis\Plugins\Jwt;
+use TheRealGambo\Kong\Apis\Plugins\Oauth2;
 use TheRealGambo\Kong\Apis\Route;
 use TheRealGambo\Kong\Apis\Service;
 use TheRealGambo\Kong\Apis\Sni;
@@ -226,5 +228,25 @@ class Kong
     public function getPluginJwt()
     {
         return new Jwt($this->url, $this->port);
+    }
+
+    /**
+     * Returns a new instance of the HMAC plugin
+     *
+     * @return \TheRealGambo\Kong\Apis\Plugins\Hmac
+     */
+    public function getPluginHmac()
+    {
+        return new Hmac($this->url, $this->port);
+    }
+
+    /**
+     * Returns a new instance of the Oauth2 plugin
+     *
+     * @return \TheRealGambo\Kong\Apis\Plugins\Oauth2
+     */
+    public function getPluginOauth2()
+    {
+        return new Oauth2($this->url, $this->port);
     }
 }
