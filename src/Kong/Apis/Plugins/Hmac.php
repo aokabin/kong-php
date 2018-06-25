@@ -70,4 +70,21 @@ final class Hmac extends AbstractApi implements HmacInterface
     {
         return $this->getRequest('consumers/' . $identifier . '/hmac-auth', $params, $headers);
     }
+
+    /**
+     * Get a single key auth credential for a consumer
+     *
+     * @see
+     *
+     * @param string $identifier
+     * @param string $auth_identifier
+     * @param array  $params
+     * @param array  $headers
+     *
+     * @return array|\stdClass
+     */
+    public function get($identifier, $auth_identifier, array $params = [], array $headers = [])
+    {
+        return $this->getRequest('consumers/' . $identifier . '/hmac-auth/' . $auth_identifier, $params, $headers);
+    }
 }

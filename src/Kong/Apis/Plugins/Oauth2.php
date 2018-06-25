@@ -70,4 +70,21 @@ final class Oauth2 extends AbstractApi implements Oauth2Interface
     {
         return $this->getRequest('consumers/' . $identifier . '/oauth2', $params, $headers);
     }
+
+    /**
+     * Get a single key auth credential for a consumer
+     *
+     * @see
+     *
+     * @param string $identifier
+     * @param string $auth_identifier
+     * @param array  $params
+     * @param array  $headers
+     *
+     * @return array|\stdClass
+     */
+    public function get($identifier, $auth_identifier, array $params = [], array $headers = [])
+    {
+        return $this->getRequest('consumers/' . $identifier . '/oauth2/' . $auth_identifier, $params, $headers);
+    }
 }
