@@ -1,7 +1,12 @@
 {
-  "name": "therealgambo/kong-php",
+  "name": "aokabin/kong-php",
   "description": "A PHP7 compliant library for interacting with the Kong Gateway Admin API.",
-  "keywords": ["kong", "kong gateway", "mashape-kong", "api-gateway"],
+  "keywords": [
+    "kong",
+    "kong gateway",
+    "mashape-kong",
+    "api-gateway"
+  ],
   "type": "Library",
   "require": {
     "php": ">=7.0",
