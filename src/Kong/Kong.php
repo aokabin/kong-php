@@ -3,6 +3,7 @@
 namespace TheRealGambo\Kong;
 
 use TheRealGambo\Kong\Apis\Api;
+use TheRealGambo\Kong\Apis\Plugins\OAuth2\ApiOAuth2;
 use TheRealGambo\Kong\Apis\Certificate;
 use TheRealGambo\Kong\Apis\Consumer;
 use TheRealGambo\Kong\Apis\Node;
@@ -46,7 +47,7 @@ class Kong
      *
      * @throws InvalidUrlException
      */
-    public function __construct($url, $port = 8001, $return_json = true, $default_timeout = 5, $verify_ssl = false)
+    public function __construct($url, $port = 8001, $return_json = true, $default_timeout = 5, $verify_ssl = false, $verify_host = false)
     {
         // Validate that the URL
         if (filter_var($url, FILTER_VALIDATE_URL) === false) {
@@ -67,6 +68,9 @@ class Kong
 
         // Verify SSL if configured
         Request::verifyPeer($verify_ssl);
+
+        // Verify Host if configured
+        Request::verifyHost($verify_host);
 
         // Ensure we are always sending and receiving JSON
         $this->setDefaultHeader('Content-Type', 'application/json');
@@ -238,6 +242,16 @@ class Kong
     public function getPluginHmac()
     {
         return new Hmac($this->url, $this->port);
+    }
+
+    /**
+     * Returns a new instance of the API Oauth2
+     *
+     * @return \TheRealGambo\Kong\Apis\Plugins\OAuth2\ApiOAuth2
+     */
+    public function getApiOauth2()
+    {
+        return new ApiOAuth2($this->url, $this->port);
     }
 
     /**
